@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: podname
+  name: HelloNginx
   labels:
-    app: nginx_webserver
+    app: nginx_web_server
 spec:
   containers:
-  - name: containername
+  - name: FirstNginxContainer
     image: nginx:latest
     ports:
       - containerPort: 80
