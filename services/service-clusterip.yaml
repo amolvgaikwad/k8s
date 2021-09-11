@@ -9,3 +9,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 9376
+
+
+# This specification creates a new Service object named "my-service",
+# which targets TCP port 9376 on any Pod with the app=MyApp label.

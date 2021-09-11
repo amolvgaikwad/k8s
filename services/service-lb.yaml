@@ -15,3 +15,7 @@ status:
   loadBalancer:
     ingress:
     - ip: 192.0.2.127
+
+
+# This specification creates a new Service object named "my-service",
+# which targets TCP port 9376 on any Pod with the app=MyApp label.
