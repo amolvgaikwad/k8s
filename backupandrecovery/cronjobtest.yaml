@@ -1,0 +1,33 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: my-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: postgres:13.1
+            args:
+            - /bin/sh
+            - -c
+            - echo "$PGPASS" > /root/.pgpass && chmod 600 /root/.pgpass && pg_dump -U postgresadmin -h postgres postgresdb > /var/backup/backup-$(date +"%m-%d-%Y-%H-%M").sql
+            env:
+            - name: PGPASS
+              valueFrom:
+                secretKeyRef:
+                  name: pgpass
+                  key: pgpass
+            - name: CronJobOutputFolder
+              value: "/var/backup"
+            volumeMounts:
+              - mountPath: "/var/backup"
+                name: volume
+          restartPolicy: OnFailure
+          volumes:
+          - name: volume
+            persistentVolumeClaim:
+              claimName: azure-fileshare
