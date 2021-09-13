@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: my-service
 spec:
+  externalTraficPolicy: Cluster
+  clusterIP: 123.98.90.77.21
   selector:
     app: MyApp
   ports:
