@@ -5,6 +5,6 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: test
+      name: my-service 
       port:
         number: 80
